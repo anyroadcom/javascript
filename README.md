@@ -1,4 +1,4 @@
-# Airbnb JavaScript Style Guide() {
+# JavaScript Style Guide(Airbnb) {
 
 *A mostly reasonable approach to JavaScript*
 
@@ -447,11 +447,13 @@
 
     // good
     function() {
+      var name;
+      
       if (!arguments.length) {
         return false;
       }
 
-      var name = getName();
+      name = getName();
 
       return true;
     }
@@ -600,14 +602,14 @@
 
 ## Blocks
 
-  - Use braces with all multi-line blocks.
+  - Use braces with all blocks. It's less error-prone and makes debugging easier.
 
     ```javascript
     // bad
     if (test)
       return false;
 
-    // good
+    // bad
     if (test) return false;
 
     // good
@@ -691,7 +693,7 @@
     }
     ```
 
-  - Prefixing your comments with `FIXME` or `TODO` helps other developers quickly understand if you're pointing out a problem that needs to be revisited, or if you're suggesting a solution to the problem that needs to be implemented. These are different than regular comments because they are actionable. The actions are `FIXME -- need to figure this out` or `TODO -- need to implement`.
+  - Prefixing your comments with `FIXME`, `TODO` or `XXX` helps other developers quickly understand if you're pointing out a problem that needs to be revisited, if you're suggesting a solution to the problem that needs to be implemented, or if you're pointing out code that works but is difficult to understand. These are different than regular comments because they are actionable. The actions are `FIXME -- need to figure this out`, `TODO -- need to implement`, `XXX -- this is really ugly but we shouldn't mess with it`.
 
   - Use `// FIXME:` to annotate problems
 
@@ -716,16 +718,23 @@
       return this;
     }
   ```
+  
+  - Use `// XXX:` to annotate dirty solutions in code
+  
+  ```javascript
+  //XXX: There's no other way around this if we want to support all browsers
+  document.write('<div></div>');
+  ```
 
 **[⬆ back to top](#table-of-contents)**
 
 
 ## Whitespace
 
-  - Use soft tabs set to 2 spaces
+  - Use soft tabs set to either 4 or 2 spaces. I know all examples here are indented with 2 spaces but javascript is more readable if you use 4.
 
     ```javascript
-    // bad
+    // good - this is 1995 we're talking about
     function() {
     ∙∙∙∙var name;
     }
@@ -775,6 +784,12 @@
 
     // good
     var x = y + 5;
+    
+    // bad
+    var greeting = 'Hello, '+name+'.';
+    
+    // good
+    var greeting = 'Hello, ' + name + '.';
     ```
 
   - End files with a single newline character.
@@ -1321,6 +1336,24 @@
       global.FancyInput = FancyInput;
     }(this);
     ```
+  - Prefer to export the module's public API in an assigned variable at the end of the closure.
+  - Add a new line between two properties.
+  
+    ```javascript
+    var MyObject = {
+      color: "blue",
+      
+      myFunction: function() {
+        // do stuff...
+      },
+      
+      anotherFunction: function() {
+        // do other stuff...
+      }
+    }
+    
+    module.exports = MyClass;
+    ```
 
 **[⬆ back to top](#table-of-contents)**
 
@@ -1406,6 +1439,26 @@
 
 **[⬆ back to top](#table-of-contents)**
 
+## File naming
+  
+  - Use snakeCase for filenames and extra dots for suffixes.
+  
+  ```
+  // bad
+  rails_inspired_naming.js
+  
+  // good
+  railsInspiredNaming.js
+  
+  // bad
+  userFormReact.js
+  carousel-jquery.js
+  
+  // good
+  userForm.react.js
+  carousel.jquery.js
+  ```
+**[⬆ back to top](#table-of-contents)**
 
 ## Performance
 
@@ -1479,57 +1532,6 @@
   - [nettuts](http://net.tutsplus.com/?s=javascript)
 
 **[⬆ back to top](#table-of-contents)**
-
-## In the Wild
-
-  This is a list of organizations that are using this style guide. Send us a pull request or open an issue and we'll add you to the list.
-
-  - **Aan Zee**: [AanZee/javascript](https://github.com/AanZee/javascript)
-  - **Airbnb**: [airbnb/javascript](https://github.com/airbnb/javascript)
-  - **American Insitutes for Research**: [AIRAST/javascript](https://github.com/AIRAST/javascript)
-  - **Compass Learning**: [compasslearning/javascript-style-guide](https://github.com/compasslearning/javascript-style-guide)
-  - **DailyMotion**: [dailymotion/javascript](https://github.com/dailymotion/javascript)
-  - **Digitpaint** [digitpaint/javascript](https://github.com/digitpaint/javascript)
-  - **ExactTarget**: [ExactTarget/javascript](https://github.com/ExactTarget/javascript)
-  - **Gawker Media**: [gawkermedia/javascript](https://github.com/gawkermedia/javascript)
-  - **GeneralElectric**: [GeneralElectric/javascript](https://github.com/GeneralElectric/javascript)
-  - **GoodData**: [gooddata/gdc-js-style](https://github.com/gooddata/gdc-js-style)
-  - **Grooveshark**: [grooveshark/javascript](https://github.com/grooveshark/javascript)
-  - **How About We**: [howaboutwe/javascript](https://github.com/howaboutwe/javascript)
-  - **Intent Media**: [intentmedia/javascript](https://github.com/intentmedia/javascript)
-  - **Mighty Spring**: [mightyspring/javascript](https://github.com/mightyspring/javascript)
-  - **MinnPost**: [MinnPost/javascript](https://github.com/MinnPost/javascript)
-  - **ModCloth**: [modcloth/javascript](https://github.com/modcloth/javascript)
-  - **Money Advice Service**: [moneyadviceservice/javascript](https://github.com/moneyadviceservice/javascript)
-  - **Muber**: [muber/javascript](https://github.com/muber/javascript)
-  - **National Geographic**: [natgeo/javascript](https://github.com/natgeo/javascript)
-  - **National Park Service**: [nationalparkservice/javascript](https://github.com/nationalparkservice/javascript)
-  - **Orion Health**: [orionhealth/javascript](https://github.com/orionhealth/javascript)
-  - **Peerby**: [Peerby/javascript](https://github.com/Peerby/javascript)
-  - **Razorfish**: [razorfish/javascript-style-guide](https://github.com/razorfish/javascript-style-guide)
-  - **reddit**: [reddit/styleguide/javascript](https://github.com/reddit/styleguide/tree/master/javascript)
-  - **REI**: [reidev/js-style-guide](https://github.com/reidev/js-style-guide)
-  - **Ripple**: [ripple/javascript-style-guide](https://github.com/ripple/javascript-style-guide)
-  - **SeekingAlpha**: [seekingalpha/javascript-style-guide](https://github.com/seekingalpha/javascript-style-guide)
-  - **Shutterfly**: [shutterfly/javascript](https://github.com/shutterfly/javascript)
-  - **TheLadders**: [TheLadders/javascript](https://github.com/TheLadders/javascript)
-  - **Userify**: [userify/javascript](https://github.com/userify/javascript)
-  - **Zillow**: [zillow/javascript](https://github.com/zillow/javascript)
-  - **ZocDoc**: [ZocDoc/javascript](https://github.com/ZocDoc/javascript)
-
-## Translation
-
-  This style guide is also available in other languages:
-
-  - :de: **German**: [timofurrer/javascript-style-guide](https://github.com/timofurrer/javascript-style-guide)
-  - :jp: **Japanese**: [mitsuruog/javacript-style-guide](https://github.com/mitsuruog/javacript-style-guide)
-  - :br: **Portuguese**: [armoucar/javascript-style-guide](https://github.com/armoucar/javascript-style-guide)
-  - :cn: **Chinese**: [adamlu/javascript-style-guide](https://github.com/adamlu/javascript-style-guide)
-  - :es: **Spanish**: [paolocarrasco/javascript-style-guide](https://github.com/paolocarrasco/javascript-style-guide)
-  - :kr: **Korean**: [tipjs/javascript-style-guide](https://github.com/tipjs/javascript-style-guide)
-  - :fr: **French**: [nmussy/javascript-style-guide](https://github.com/nmussy/javascript-style-guide)
-  - :ru: **Russian**: [uprock/javascript](https://github.com/uprock/javascript)
-  - :bg: **Bulgarian**: [borislavvv/javascript](https://github.com/borislavvv/javascript)
 
 ## The JavaScript Style Guide Guide
 
